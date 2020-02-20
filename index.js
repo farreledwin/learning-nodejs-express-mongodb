@@ -46,7 +46,7 @@ const server = http.createServer((req, res) => {
 		});
 		res.end('<h2> NOT FOUND WITH HTML CODE </h2>');
 	}
-	// res.end('Hello this is from farjun server');
+	 res.end('Hello this is from farjun server');
 });
 
 server.listen(8000, '127.0.0.1', () => {
