@@ -17,6 +17,23 @@ app.get('/api/v1/tours', (req, res) => {
 	});
 });
 
+app.get('/api/v1/tours/:id', (req, res) => {
+	console.log(req.params.id);
+	const tour = tours.find((el) => el.id === req.params.id * 1);
+	if (req.params.id > tours.length) {
+		return res.status(404).json({
+			status: 'failed'
+		});
+	}
+
+	res.status(200).json({
+		results: 'OK',
+		data: {
+			tour
+		}
+	});
+});
+
 app.post('/api/v1/tours', (req, res) => {
 	const newID = tours[tours.length - 1].id + 1;
 	const newData = Object.assign({ id: newID }, req.body);
