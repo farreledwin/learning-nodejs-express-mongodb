@@ -6,6 +6,11 @@ const app = express();
 app.use(express.json());
 
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`));
+const tourRouter = express.Router();
+const userRouter = express.Router();
+
+app.use('/api/v1/users', userRouter);
+app.use('/api/v1/tours', tourRouter);
 
 const getAllTours = (req, res) => {
 	res.status(200).json({
@@ -83,13 +88,13 @@ const deleteUser = (req, res) => {
 	});
 };
 
-app.route('/api/v1/users').get(getAllUsers).post(createUser);
+userRouter.route('/').get(getAllUsers).post(createUser);
 
-app.route('/api/v1/users/:id').get(getUser).patch(updateUser).delete(deleteUser);
+userRouter.route('/:id').get(getUser).patch(updateUser).delete(deleteUser);
 
-app.route('/api/v1/tours').get(getAllTours).post(addnewdata);
+tourRouter.route('/').get(getAllTours).post(addnewdata);
 
-app.route('/api/v1/tours/:id').get(getToursById);
+tourRouter.route('/:id').get(getToursById);
 
 app.get('/', (req, res) => {
 	res.status(200).json({ message: 'Accessing Root URL and testing sending response JSON', app: 'natours' });
