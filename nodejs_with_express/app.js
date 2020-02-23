@@ -48,6 +48,45 @@ const addnewdata = (req, res) => {
 	});
 };
 
+const getAllUsers = (req, res) => {
+	res.status(500).json({
+		status: 'failed',
+		message: 'coming soon feature'
+	});
+};
+
+const createUser = (req, res) => {
+	res.status(500).json({
+		status: 'failed',
+		message: 'coming soon feature'
+	});
+};
+
+const getUser = (req, res) => {
+	res.status(500).json({
+		status: 'failed',
+		message: 'coming soon feature'
+	});
+};
+
+const updateUser = (req, res) => {
+	res.status(500).json({
+		status: 'failed',
+		message: 'coming soon feature'
+	});
+};
+
+const deleteUser = (req, res) => {
+	res.status(500).json({
+		status: 'failed',
+		message: 'coming soon feature'
+	});
+};
+
+app.route('/api/v1/users').get(getAllUsers).post(createUser);
+
+app.route('/api/v1/users/:id').get(getUser).patch(updateUser).delete(deleteUser);
+
 app.route('/api/v1/tours').get(getAllTours).post(addnewdata);
 
 app.route('/api/v1/tours/:id').get(getToursById);
