@@ -7,7 +7,7 @@ app.use(express.json());
 
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`));
 
-app.get('/api/v1/tours', (req, res) => {
+const getAllTours = (req, res) => {
 	res.status(200).json({
 		status: 'success',
 		results: tours.length,
@@ -15,11 +15,12 @@ app.get('/api/v1/tours', (req, res) => {
 			tours
 		}
 	});
-});
+};
 
-app.get('/api/v1/tours/:id', (req, res) => {
+const getToursById = (req, res) => {
 	console.log(req.params.id);
 	const tour = tours.find((el) => el.id === req.params.id * 1);
+	tour.name = 'farjun';
 	if (req.params.id > tours.length) {
 		return res.status(404).json({
 			status: 'failed'
@@ -32,9 +33,9 @@ app.get('/api/v1/tours/:id', (req, res) => {
 			tour
 		}
 	});
-});
+};
 
-app.post('/api/v1/tours', (req, res) => {
+const addnewdata = (req, res) => {
 	const newID = tours[tours.length - 1].id + 1;
 	const newData = Object.assign({ id: newID }, req.body);
 	tours.push(newData);
@@ -45,7 +46,11 @@ app.post('/api/v1/tours', (req, res) => {
 			tour: newData
 		});
 	});
-});
+};
+
+app.route('/api/v1/tours').get(getAllTours).post(addnewdata);
+
+app.route('/api/v1/tours/:id').get(getToursById);
 
 app.get('/', (req, res) => {
 	res.status(200).json({ message: 'Accessing Root URL and testing sending response JSON', app: 'natours' });
