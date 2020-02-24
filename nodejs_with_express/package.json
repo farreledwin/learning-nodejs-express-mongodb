@@ -1,0 +1,14 @@
+{
+	"name": "natours",
+	"version": "1.0.0",
+	"description": "Learning NodeJS with Express and mongoDB",
+	"main": "app.js",
+	"scripts": {
+		"start": "nodemon server.js"
+	},
+	"author": "Edwin Farrel Juniawan",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.17.1"
+	}
+}
