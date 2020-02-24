@@ -9,7 +9,6 @@ const overviewPage = fs.readFileSync(`${__dirname}/overview.html`, 'utf-8');
 const tempCard = fs.readFileSync(`${__dirname}/template-card.html`, 'utf-8');
 const productPage = fs.readFileSync(`${__dirname}/product.html`, 'utf-8');
 
-
 const replaceTemplate = (temp, product) => {
 	let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName);
 	output = output.replace(/{%IMAGE%}/g, product.image);
@@ -25,11 +24,10 @@ const replaceTemplate = (temp, product) => {
 	return output;
 };
 
-
-
 const server = http.createServer((req, res) => {
 	const pathName = req.url;
-	const {query,pathname} = url.parse(req.url,true);
+
+	const { query, pathname } = url.parse(req.url, true);
 
 	if (pathname === '/' || pathname === '/overview') {
 		res.writeHead(200, {
@@ -43,10 +41,9 @@ const server = http.createServer((req, res) => {
 			'Content-type': 'text/html'
 		});
 		const data = dataObj[query.id];
-		const result = replaceTemplate(productPage,data);
+		const result = replaceTemplate(productPage, data);
 
 		res.end(result);
-
 	} else if (pathname === '/api') {
 		res.writeHead(200, {
 			'Content-type': 'application/json'
