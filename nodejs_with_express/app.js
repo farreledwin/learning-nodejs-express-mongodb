@@ -18,6 +18,23 @@ mongoose
 		console.log('DB Successfully connected');
 	});
 
+const tourSchema = new mongoose.Schema({
+	name: {
+		type: String,
+		required: [ true, 'a tour must have a name' ],
+		unique: true
+	},
+	rating: {
+		type: Number,
+		default: 4.5
+	},
+	price: {
+		type: Number,
+		required: [ true, 'a tour must have a price' ]
+	}
+});
+const Tour = mongoose.model('Tour', tourSchema);
+
 app.use(express.json());
 
 const tourRouter = require('./routes/tourRoutes');
