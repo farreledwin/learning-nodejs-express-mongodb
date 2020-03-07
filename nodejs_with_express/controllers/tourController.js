@@ -11,6 +11,15 @@ exports.getAllTours = (req, res) => {
 	});
 };
 
+exports.checkdata = (req, res, next) => {
+	if (!req.body.name || !req.body.price) {
+		return res.status(400).json({
+			status: 'fail',
+			message: 'missing request price and name'
+		});
+	}
+};
+
 exports.addnewdata = (req, res) => {
 	const newID = tours[tours.length - 1].id + 1;
 	const newData = Object.assign({ id: newID }, req.body);
