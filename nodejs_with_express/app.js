@@ -18,23 +18,20 @@ mongoose
 		console.log('DB Successfully connected');
 	});
 
-const tourSchema = new mongoose.Schema({
-	name: {
-		type: String,
-		required: [ true, 'a tour must have a name' ],
-		unique: true
-	},
-	rating: {
-		type: Number,
-		default: 4.5
-	},
-	price: {
-		type: Number,
-		required: [ true, 'a tour must have a price' ]
-	}
+const newTour = new Tour({
+	name: 'a forest priker',
+	price: 445
 });
-const Tour = mongoose.model('Tour', tourSchema);
 
+newTour
+	.save()
+	.then((con) => {
+		console.log(con.connections);
+		console.log(con.collection);
+	})
+	.catch((err) => {
+		console.log(err);
+	});
 app.use(express.json());
 
 const tourRouter = require('./routes/tourRoutes');
