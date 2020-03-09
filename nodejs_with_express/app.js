@@ -8,7 +8,7 @@ dotenv.config({ path: './config.env' });
 const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
 
 mongoose
-	.connect(DB, {
+	.connect(process.env.DATABASE_LOCAL, {
 		useNewUrlParser: true,
 		useCreateIndex: true,
 		useFindAndModify: true
@@ -34,6 +34,20 @@ const tourSchema = new mongoose.Schema({
 	}
 });
 const Tour = mongoose.model('Tour', tourSchema);
+
+const newTour = new Tour({
+	name: 'a forest hiker',
+	price: 227
+});
+
+newTour
+	.save()
+	.then((res) => {
+		console.log(res);
+	})
+	.catch((err) => {
+		console.log(err);
+	});
 
 app.use(express.json());
 
