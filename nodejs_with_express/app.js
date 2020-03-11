@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const Tour = require('./models/tourModel.js');
 
 dotenv.config({ path: './config.env' });
 
@@ -18,20 +19,20 @@ mongoose
 		console.log('DB Successfully connected');
 	});
 
-const newTour = new Tour({
-	name: 'a forest priker',
-	price: 445
-});
+// const newTour = new Tour({
+// 	name: 'a forest priker',
+// 	price: 445
+// });
 
-newTour
-	.save()
-	.then((con) => {
-		console.log(con.connections);
-		console.log(con.collection);
-	})
-	.catch((err) => {
-		console.log(err);
-	});
+// newTour
+// 	.save()
+// 	.then((con) => {
+// 		console.log(con.connections);
+// 		console.log(con.collection);
+// 	})
+// 	.catch((err) => {
+// 		console.log(err);
+// 	});
 app.use(express.json());
 
 const tourRouter = require('./routes/tourRoutes');
