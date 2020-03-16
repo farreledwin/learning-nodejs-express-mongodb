@@ -9,6 +9,10 @@ const tourSchema = new mongoose.Schema({
 		type: Number,
 		default: 4.5
 	},
+	difficulty: {
+		type: String,
+		required: [ true, 'a tour must have difficult' ]
+	},
 	price: {
 		type: Number,
 		required: [ true, 'A tour must have a price' ]

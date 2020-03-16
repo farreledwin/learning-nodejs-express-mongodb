@@ -37,6 +37,6 @@ const deleteAllData = async () => {
 
 if (process.argv[2] == '--import') {
 	importData();
-} else if (proccess.argv[2] == '--delete') {
+} else if (process.argv[2] == '--delete') {
 	deleteAllData();
 }
