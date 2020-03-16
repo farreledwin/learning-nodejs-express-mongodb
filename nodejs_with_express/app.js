@@ -8,47 +8,29 @@ dotenv.config({ path: './config.env' });
 const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSWORD);
 
 mongoose
-	.connect(process.env.DATABASE_LOCAL, {
+	.connect(DB, {
 		useNewUrlParser: true,
 		useCreateIndex: true,
 		useFindAndModify: true
 	})
 	.then((con) => {
-		console.log(con.connections);
 		console.log('DB Successfully connected');
 	});
 
-const tourSchema = new mongoose.Schema({
-	name: {
-		type: String,
-		required: [ true, 'a tour must have a name' ],
-		unique: true
-	},
-	rating: {
-		type: Number,
-		default: 4.5
-	},
-	price: {
-		type: Number,
-		required: [ true, 'a tour must have a price' ]
-	}
-});
-const Tour = mongoose.model('Tour', tourSchema);
+// const newTour = new Tour({
+// 	name: 'a forest priker',
+// 	price: 445
+// });
 
-const newTour = new Tour({
-	name: 'a forest hiker',
-	price: 227
-});
-
-newTour
-	.save()
-	.then((res) => {
-		console.log(res);
-	})
-	.catch((err) => {
-		console.log(err);
-	});
-
+// newTour
+// 	.save()
+// 	.then((con) => {
+// 		console.log(con.connections);
+// 		console.log(con.collection);
+// 	})
+// 	.catch((err) => {
+// 		console.log(err);
+// 	});
 app.use(express.json());
 
 const tourRouter = require('./routes/tourRoutes');
