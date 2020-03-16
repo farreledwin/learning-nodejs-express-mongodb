@@ -82,3 +82,5 @@ exports.deleteTour = async (req, res) => {
 		});
 	}
 };
+
+exports.createTour = async (req, res) => {};
