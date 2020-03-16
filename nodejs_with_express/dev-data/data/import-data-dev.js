@@ -40,4 +40,3 @@ if (process.argv[2] == '--import') {
 } else if (proccess.argv[2] == '--delete') {
 	deleteAllData();
 }
-
