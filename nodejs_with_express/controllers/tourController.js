@@ -83,4 +83,16 @@ exports.deleteTour = async (req, res) => {
 	}
 };
 
-exports.createTour = async (req, res) => {};
+exports.createTour = async (req, res) => {
+	try {
+		await Tour.create(req.body, (err, msg) => {
+			res.status(200).json({
+				message: 'insert success'
+			});
+		});
+	} catch (err) {
+		res.status(404).json({
+			message: err
+		});
+	}
+};
