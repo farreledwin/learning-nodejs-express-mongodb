@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+const Tour = require('./models/tourModel.js');
 
 dotenv.config({ path: './config.env' });
 
